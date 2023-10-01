@@ -2,10 +2,10 @@
 import { app } from '@/server';
 
 // Configs
-import { initPlugins } from '@/configs';
+import { environment, initPlugins } from '@/configs';
 
 initPlugins(app);
 
-app.listen(3000, ({ hostname, port }) => {
-	console.log(`Server running at http://${hostname}:${port}`);
+app.listen(environment.PORT, ({ hostname, port }) => {
+  console.log(`Server running at http://${hostname}:${port}`);
 });

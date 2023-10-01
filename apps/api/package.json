@@ -12,7 +12,8 @@
     "@elysiajs/cors": "0.7.1",
     "@elysiajs/jwt": "0.7.0",
     "@elysiajs/swagger": "0.7.3",
-    "elysia": "latest"
+    "elysia": "latest",
+    "zod": "3.22.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "6.7.3",
