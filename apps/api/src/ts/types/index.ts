@@ -1,1 +1,1 @@
-export * from './framework.type';
+export * from './document.type';
