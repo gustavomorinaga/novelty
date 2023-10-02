@@ -1,36 +1,39 @@
-import { Elysia, type ElysiaConfig } from 'elysia';
-import { cors } from '@elysiajs/cors';
-import { jwt } from '@elysiajs/jwt';
-import { bearer } from '@elysiajs/bearer';
-import { swagger } from '@elysiajs/swagger';
+import { Elysia } from 'elysia';
 
-import { documentationConfig, environment } from '@/configs';
+// Types
+import type { TAppConfig, TElysiaCallback, TElysiaPlugin } from '@/ts';
 
-export class App extends Elysia {
-  private readonly plugins = [
-    cors(),
-    bearer(),
-    jwt({ secret: environment.JWT_SECRET }),
-    swagger(documentationConfig)
-  ];
+export class App {
+  private app: Elysia;
+  private port: number;
+  private plugins: Array<TElysiaPlugin> = [];
+  private controllers: Array<TElysiaCallback> = [];
 
-  constructor(props: ElysiaConfig) {
-    super(props);
+  constructor({ port, plugins, controllers, ...props }: TAppConfig) {
+    this.app = new Elysia(props);
+    this.port = port;
+    this.plugins = plugins;
+    this.controllers = controllers;
 
     this.registerPlugins();
     this.registerEvents();
+    this.registerControllers();
   }
 
   private registerPlugins() {
-    for (const plugin of this.plugins) this.use((<unknown>plugin) as Elysia);
+    for (const plugin of this.plugins) this.app.use((<unknown>plugin) as Elysia);
   }
 
   private registerEvents() {
-    this.on('error', error => console.error(`❌ Error: ${error.message}`));
+    this.app.on('error', error => console.error(`❌ Error: ${error.message}`));
+  }
+
+  private registerControllers() {
+    for (const controller of this.controllers) this.app.use(controller);
   }
 
   public start() {
-    return this.listen(environment.PORT, ({ hostname, port }) => {
+    return this.app.listen(this.port, ({ hostname, port }) => {
       console.log(`Server running at http://${hostname}:${port}`);
     });
   }

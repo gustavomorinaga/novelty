@@ -1,3 +1,8 @@
 import { App } from '@/server';
 
-new App({ prefix: '/api' as '' }).start();
+// Configs
+import { serverConfig } from '@/configs';
+
+const api = new App(serverConfig.API);
+
+api.start();
