@@ -1,3 +1,3 @@
 import { App } from '@/server';
 
-new App().start();
+new App({ prefix: '/api' as '' }).start();
