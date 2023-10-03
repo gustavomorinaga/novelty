@@ -1,8 +1,9 @@
+// Server
 import { App } from '@/server';
 
 // Configs
 import { serverConfig } from '@/configs';
 
-const api = new App(serverConfig.API);
+const app = new App(serverConfig.api);
 
-api.start();
+app.start();

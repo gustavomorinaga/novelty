@@ -4,15 +4,18 @@
   "private": true,
   "scripts": {
     "dev": "bun run --watch src/index.ts",
-    "lint": "biome lint --apply ./src",
-    "format": "biome format --write ./src"
+    "lint": "prettier --plugin-search-dir . --check . && eslint .",
+    "format": "prettier --plugin-search-dir . --write ."
   },
   "dependencies": {
+    "@bogeychan/elysia-logger": "0.0.11",
     "@elysiajs/bearer": "0.7.0",
     "@elysiajs/cookie": "0.7.0",
     "@elysiajs/cors": "0.7.1",
     "@elysiajs/jwt": "0.7.0",
     "@elysiajs/swagger": "0.7.3",
+    "@libsql/client": "0.3.5",
+    "drizzle-orm": "0.28.6",
     "elysia": "latest",
     "zod": "3.22.2"
   },
@@ -20,6 +23,7 @@
     "@typescript-eslint/eslint-plugin": "6.7.3",
     "@typescript-eslint/parser": "6.7.3",
     "bun-types": "latest",
+    "drizzle-kit": "0.19.13",
     "eslint": "8.50.0",
     "eslint-config-prettier": "9.0.0"
   }

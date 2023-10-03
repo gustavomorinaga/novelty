@@ -1,35 +1,31 @@
 import { Elysia } from 'elysia';
 
 // Types
-import type { TAppConfig, TElysiaCallback, TElysiaPlugin } from '@/ts';
+import type { TAppConfig } from '@/ts';
 
-export class App {
-  private app: Elysia;
-  private port: number;
-  private plugins: Array<TElysiaPlugin> = [];
-  private controllers: Array<TElysiaCallback> = [];
+export class App<T extends string = ''> {
+  private app: Elysia<T>;
+  private port: TAppConfig['port'];
+  private plugins: TAppConfig['plugins'] = [];
+  private contexts: TAppConfig['contexts'] = [];
 
-  constructor({ port, plugins, controllers, ...props }: TAppConfig) {
+  constructor({ port, plugins, contexts, ...props }: TAppConfig<T>) {
     this.app = new Elysia(props);
     this.port = port;
     this.plugins = plugins;
-    this.controllers = controllers;
+    this.contexts = contexts;
 
-    this.registerPlugins();
     this.registerEvents();
-    this.registerControllers();
+    if (this.plugins.length) this.registerContexts(this.plugins);
+    if (this.contexts.length) this.registerContexts(this.contexts);
   }
 
-  private registerPlugins() {
-    for (const plugin of this.plugins) this.app.use((<unknown>plugin) as Elysia);
+  private registerContexts(contexts: TAppConfig['plugins'] | TAppConfig['contexts']) {
+    for (const context of contexts) this.app.use((<unknown>context) as Elysia);
   }
 
   private registerEvents() {
-    this.app.on('error', error => console.error(`❌ Error: ${error.message}`));
-  }
-
-  private registerControllers() {
-    for (const controller of this.controllers) this.app.use(controller);
+    this.app.onError(({ error }) => console.error(`❌ ${error}`));
   }
 
   public start() {

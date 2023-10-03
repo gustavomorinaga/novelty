@@ -3,8 +3,8 @@ import { Elysia, type ElysiaConfig } from 'elysia';
 export type TElysiaCallback = (app: Elysia) => Elysia;
 export type TElysiaPlugin = Elysia | TElysiaCallback;
 
-export type TAppConfig = ElysiaConfig & {
+export type TAppConfig<T extends string = ''> = ElysiaConfig<T> & {
   port: number;
   plugins: Array<TElysiaPlugin>;
-  controllers: Array<TElysiaCallback>;
+  contexts: Array<Elysia>;
 };
