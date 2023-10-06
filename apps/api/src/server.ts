@@ -7,21 +7,21 @@ export class App<T extends string = ''> {
   private app: Elysia<T>;
   private port: TAppConfig['port'];
   private plugins: TAppConfig['plugins'] = [];
-  private contexts: TAppConfig['contexts'] = [];
+  private modules: TAppConfig['modules'] = [];
 
-  constructor({ port, plugins, contexts, ...props }: TAppConfig<T>) {
+  constructor({ port, plugins, modules, ...props }: TAppConfig<T>) {
     this.app = new Elysia(props);
     this.port = port;
     this.plugins = plugins;
-    this.contexts = contexts;
+    this.modules = modules;
 
     this.registerEvents();
-    if (this.plugins.length) this.registerContexts(this.plugins);
-    if (this.contexts.length) this.registerContexts(this.contexts);
+    if (this.plugins.length) this.injectModules(this.plugins);
+    if (this.modules.length) this.injectModules(this.modules);
   }
 
-  private registerContexts(contexts: TAppConfig['plugins'] | TAppConfig['contexts']) {
-    for (const context of contexts) this.app.use((<unknown>context) as Elysia);
+  private injectModules(modules: TAppConfig['plugins'] | TAppConfig['modules']) {
+    for (const context of modules) this.app.use((<unknown>context) as Elysia);
   }
 
   private registerEvents() {

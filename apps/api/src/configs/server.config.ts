@@ -10,8 +10,8 @@ import { environment } from '@/configs';
 // Docs
 import { apiDoc } from '@/docs';
 
-// Contexts
-import { apiContext } from '@/contexts';
+// Controllers
+import * as controllers from '@/controllers';
 
 // Types
 import type { TAppConfig } from '@/ts';
@@ -22,6 +22,6 @@ export const serverConfig = {
     prefix: '/api',
     port: environment.API_PORT,
     plugins: [cors(), bearer(), cookie(), swagger(apiDoc), logger()],
-    contexts: [apiContext]
+    modules: [controllers.userController]
   } as TAppConfig<'/api'>
 };
