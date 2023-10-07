@@ -17,3 +17,4 @@ const apiClient = createClient({
 const apiDB = drizzle(apiClient, { schema });
 
 export { apiDB, schema };
+export type * from '@/databases/api/schemas';

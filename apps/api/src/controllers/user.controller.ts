@@ -3,7 +3,20 @@ import { eq, like } from 'drizzle-orm';
 
 // Contexts
 import { apiContext } from '@/contexts';
+
+// Models
 import { userModel } from '@/models';
+
+// Utils
+import { zParse } from '@/utils';
+
+// Validators
+import {
+  userSelectSchema,
+  userFindSchema,
+  userCreateSchema,
+  userUpdateSchema
+} from '@/validations';
 
 export const userController = new Elysia({
   name: '@apps/api/controllers/user'
@@ -14,11 +27,25 @@ export const userController = new Elysia({
       .use(userModel)
       .get(
         '/',
-        async ({ db, schema: { users }, query }) =>
-          await db
-            .select()
+        async ({ db, schema: { users }, query }) => {
+          const { query: filter } = await zParse(userSelectSchema, { query });
+
+          const result = await db
+            .select({
+              id: users.id,
+              firstName: users.firstName,
+              lastName: users.lastName,
+              displayName: users.displayName,
+              email: users.email,
+              role: users.role,
+              createdAt: users.createdAt,
+              updatedAt: users.updatedAt
+            })
             .from(users)
-            .where(like(users.displayName, `%${query.displayName}%`)),
+            .where(like(users.displayName, `%${filter.displayName}%`));
+
+          return result;
+        },
         {
           detail: {
             summary: 'Get a list of users',
@@ -30,11 +57,24 @@ export const userController = new Elysia({
       )
       .get(
         '/:id',
-        async ({ db, schema: { users }, params: { id } }) => {
+        async ({ db, schema: { users }, params }) => {
+          const {
+            params: { id }
+          } = await zParse(userFindSchema, { params });
+
           const [user] = await db
-            .select()
+            .select({
+              id: users.id,
+              firstName: users.firstName,
+              lastName: users.lastName,
+              displayName: users.displayName,
+              email: users.email,
+              role: users.role,
+              createdAt: users.createdAt,
+              updatedAt: users.updatedAt
+            })
             .from(users)
-            .where(eq(users.id, Number(id)));
+            .where(eq(users.id, id));
 
           return user || null;
         },
@@ -48,8 +88,19 @@ export const userController = new Elysia({
       )
       .post(
         '/',
-        async ({ db, schema: { users }, body: data }) => {
-          const [user] = await db.insert(users).values(data).returning();
+        async ({ db, schema: { users }, body }) => {
+          const { body: data } = await zParse(userCreateSchema, { body });
+
+          const [user] = await db.insert(users).values(data).returning({
+            id: users.id,
+            firstName: users.firstName,
+            lastName: users.lastName,
+            displayName: users.displayName,
+            email: users.email,
+            role: users.role,
+            createdAt: users.createdAt,
+            updatedAt: users.updatedAt
+          });
 
           return user;
         },
@@ -64,12 +115,22 @@ export const userController = new Elysia({
       )
       .put(
         '/:id',
-        async ({ db, schema: { users }, params: { id }, body: data }) => {
-          const [user] = await db
-            .update(users)
-            .set(data)
-            .where(eq(users.id, Number(id)))
-            .returning();
+        async ({ db, schema: { users }, params, body }) => {
+          const {
+            params: { id },
+            body: data
+          } = await zParse(userUpdateSchema, { params, body });
+
+          const [user] = await db.update(users).set(data).where(eq(users.id, id)).returning({
+            id: users.id,
+            firstName: users.firstName,
+            lastName: users.lastName,
+            displayName: users.displayName,
+            email: users.email,
+            role: users.role,
+            createdAt: users.createdAt,
+            updatedAt: users.updatedAt
+          });
 
           return user;
         },
