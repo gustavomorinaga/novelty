@@ -1,11 +1,16 @@
 import { cors } from '@elysiajs/cors';
+import { helmet } from 'elysia-helmet';
+// import { rateLimit } from 'elysia-rate-limit';
+import { logger } from '@bogeychan/elysia-logger';
 import { bearer } from '@elysiajs/bearer';
 import { cookie } from '@elysiajs/cookie';
 import { swagger } from '@elysiajs/swagger';
-import { logger } from '@bogeychan/elysia-logger';
 
 // Configs
 import { environment } from '@/configs';
+
+// Security
+import { apiSec } from '@/security';
 
 // Docs
 import { apiDoc } from '@/docs';
@@ -21,7 +26,15 @@ export const serverConfig = {
     name: '@api',
     prefix: '/api',
     port: environment.API_PORT,
-    plugins: [cors(), bearer(), cookie(), swagger(apiDoc), logger()],
+    plugins: [
+      cors(),
+      helmet(apiSec),
+      // rateLimit(),
+      bearer(),
+      cookie(),
+      logger(),
+      swagger(apiDoc)
+    ],
     modules: [controllers.userController]
   } as TAppConfig<'/api'>
 };

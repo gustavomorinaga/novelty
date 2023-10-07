@@ -1,19 +1,17 @@
 import { Elysia } from 'elysia';
+import { eq, like } from 'drizzle-orm';
 
 // Contexts
 import { apiContext } from '@/contexts';
-
-// DTOs
-import { userModel } from '@/dtos';
-import { eq, like } from 'drizzle-orm';
+import { userModel } from '@/models';
 
 export const userController = new Elysia({
   name: '@apps/api/controllers/user'
 })
   .use(apiContext)
-  .use(userModel)
-  .group('/users', app =>
-    app
+  .group('/users', handler =>
+    handler
+      .use(userModel)
       .get(
         '/',
         async ({ db, schema: { users }, query }) =>
@@ -22,6 +20,10 @@ export const userController = new Elysia({
             .from(users)
             .where(like(users.displayName, `%${query.displayName}%`)),
         {
+          detail: {
+            summary: 'Get a list of users',
+            tags: ['Users']
+          },
           query: 'user.select.query',
           response: 'user.select.response'
         }
@@ -36,7 +38,13 @@ export const userController = new Elysia({
 
           return user || null;
         },
-        { response: 'user.find.response' }
+        {
+          detail: {
+            summary: 'Get a user by ID',
+            tags: ['Users']
+          },
+          response: 'user.find.response'
+        }
       )
       .post(
         '/',
@@ -46,8 +54,32 @@ export const userController = new Elysia({
           return user;
         },
         {
+          detail: {
+            summary: 'Create a new user',
+            tags: ['Users']
+          },
           body: 'user.create.body',
           response: 'user.create.response'
+        }
+      )
+      .put(
+        '/:id',
+        async ({ db, schema: { users }, params: { id }, body: data }) => {
+          const [user] = await db
+            .update(users)
+            .set(data)
+            .where(eq(users.id, Number(id)))
+            .returning();
+
+          return user;
+        },
+        {
+          detail: {
+            summary: 'Update a user by ID',
+            tags: ['Users']
+          },
+          body: 'user.update.body',
+          response: 'user.update.response'
         }
       )
   );

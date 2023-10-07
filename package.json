@@ -20,6 +20,6 @@
   },
   "devDependencies": {
     "del-cli": "5.1.0",
-    "turbo": "1.10.14"
+    "turbo": "latest"
   }
 }

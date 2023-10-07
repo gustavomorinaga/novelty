@@ -19,6 +19,8 @@
     "@libsql/client": "0.3.5",
     "drizzle-orm": "0.28.6",
     "elysia": "latest",
+    "elysia-helmet": "^1.0.1",
+    "elysia-rate-limit": "^1.2.0",
     "zod": "3.22.4"
   },
   "devDependencies": {

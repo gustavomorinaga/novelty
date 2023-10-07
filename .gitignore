@@ -21,6 +21,7 @@ yarn-error.log*
 .env.production.local
 
 # vercel
+.turbo
 .vercel
 turbo.json
 
