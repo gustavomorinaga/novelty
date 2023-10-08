@@ -37,10 +37,16 @@ export const userUpdateSchema = z.object({
     id: z.coerce.number().min(0)
   }),
   body: userSchema
-    .omit({ id: true, createdAt: true, updatedAt: true })
+    .omit({ id: true, password: true, createdAt: true, updatedAt: true })
     .partial()
     .transform(({ birthDate, ...rest }) => ({
       ...rest,
       birthDate: birthDate?.toISOString()
     }))
 });
+
+export type TUserSchema = z.infer<typeof userSchema>;
+export type TUserSelectSchema = z.infer<typeof userSelectSchema>;
+export type TUserFindSchema = z.infer<typeof userFindSchema>;
+export type TUserCreateSchema = z.infer<typeof userCreateSchema>;
+export type TUserUpdateSchema = z.infer<typeof userUpdateSchema>;

@@ -12,6 +12,6 @@ export const userSchema = t.Composite([
     birthDate: t.Date(),
     email: t.String(),
     password: t.String(),
-    role: t.Union([t.Literal('user'), t.Literal('admin')])
+    role: t.Union([t.Literal('user'), t.Literal('admin')], { default: 'user' })
   })
 ]);

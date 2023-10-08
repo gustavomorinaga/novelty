@@ -1,11 +1,13 @@
 import { Elysia } from 'elysia';
-import { eq, like } from 'drizzle-orm';
 
 // Contexts
 import { apiContext } from '@/contexts';
 
 // Models
 import { userModel } from '@/models';
+
+// Repositories
+import { userRepository } from '@/repositories';
 
 // Utils
 import { zParse } from '@/utils';
@@ -30,21 +32,7 @@ export const userController = new Elysia({
         async ({ db, schema: { users }, query }) => {
           const { query: filter } = await zParse(userSelectSchema, { query });
 
-          const result = await db
-            .select({
-              id: users.id,
-              firstName: users.firstName,
-              lastName: users.lastName,
-              displayName: users.displayName,
-              email: users.email,
-              role: users.role,
-              createdAt: users.createdAt,
-              updatedAt: users.updatedAt
-            })
-            .from(users)
-            .where(like(users.displayName, `%${filter.displayName}%`));
-
-          return result;
+          return await userRepository.findAll({ db, schema: users, query: filter });
         },
         {
           detail: {
@@ -58,25 +46,9 @@ export const userController = new Elysia({
       .get(
         '/:id',
         async ({ db, schema: { users }, params }) => {
-          const {
-            params: { id }
-          } = await zParse(userFindSchema, { params });
+          const { params: args } = await zParse(userFindSchema, { params });
 
-          const [user] = await db
-            .select({
-              id: users.id,
-              firstName: users.firstName,
-              lastName: users.lastName,
-              displayName: users.displayName,
-              email: users.email,
-              role: users.role,
-              createdAt: users.createdAt,
-              updatedAt: users.updatedAt
-            })
-            .from(users)
-            .where(eq(users.id, id));
-
-          return user || null;
+          return await userRepository.findByID({ db, schema: users, params: args });
         },
         {
           detail: {
@@ -91,25 +63,7 @@ export const userController = new Elysia({
         async ({ db, schema: { users }, body }) => {
           const { body: data } = await zParse(userCreateSchema, { body });
 
-          const now = new Date();
-          const createdAt = now.toISOString();
-          const updatedAt = now.toISOString();
-
-          const [user] = await db
-            .insert(users)
-            .values({ ...data, createdAt, updatedAt })
-            .returning({
-              id: users.id,
-              firstName: users.firstName,
-              lastName: users.lastName,
-              displayName: users.displayName,
-              email: users.email,
-              role: users.role,
-              createdAt: users.createdAt,
-              updatedAt: users.updatedAt
-            });
-
-          return user;
+          return await userRepository.create({ db, schema: users, body: data });
         },
         {
           detail: {
@@ -123,23 +77,9 @@ export const userController = new Elysia({
       .put(
         '/:id',
         async ({ db, schema: { users }, params, body }) => {
-          const {
-            params: { id },
-            body: data
-          } = await zParse(userUpdateSchema, { params, body });
+          const { params: args, body: data } = await zParse(userUpdateSchema, { params, body });
 
-          const [user] = await db.update(users).set(data).where(eq(users.id, id)).returning({
-            id: users.id,
-            firstName: users.firstName,
-            lastName: users.lastName,
-            displayName: users.displayName,
-            email: users.email,
-            role: users.role,
-            createdAt: users.createdAt,
-            updatedAt: users.updatedAt
-          });
-
-          return user;
+          return await userRepository.update({ db, schema: users, params: args, body: data });
         },
         {
           detail: {
