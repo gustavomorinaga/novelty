@@ -91,16 +91,23 @@ export const userController = new Elysia({
         async ({ db, schema: { users }, body }) => {
           const { body: data } = await zParse(userCreateSchema, { body });
 
-          const [user] = await db.insert(users).values(data).returning({
-            id: users.id,
-            firstName: users.firstName,
-            lastName: users.lastName,
-            displayName: users.displayName,
-            email: users.email,
-            role: users.role,
-            createdAt: users.createdAt,
-            updatedAt: users.updatedAt
-          });
+          const now = new Date();
+          const createdAt = now.toISOString();
+          const updatedAt = now.toISOString();
+
+          const [user] = await db
+            .insert(users)
+            .values({ ...data, createdAt, updatedAt })
+            .returning({
+              id: users.id,
+              firstName: users.firstName,
+              lastName: users.lastName,
+              displayName: users.displayName,
+              email: users.email,
+              role: users.role,
+              createdAt: users.createdAt,
+              updatedAt: users.updatedAt
+            });
 
           return user;
         },

@@ -24,12 +24,23 @@ export const userFindSchema = z.object({
 });
 
 export const userCreateSchema = z.object({
-  body: userSchema.omit({ id: true, createdAt: true, updatedAt: true })
+  body: userSchema
+    .omit({ id: true, createdAt: true, updatedAt: true })
+    .transform(({ birthDate, ...rest }) => ({
+      ...rest,
+      birthDate: birthDate.toISOString()
+    }))
 });
 
 export const userUpdateSchema = z.object({
   params: z.object({
     id: z.coerce.number().min(0)
   }),
-  body: userSchema.omit({ id: true }).partial()
+  body: userSchema
+    .omit({ id: true, createdAt: true, updatedAt: true })
+    .partial()
+    .transform(({ birthDate, ...rest }) => ({
+      ...rest,
+      birthDate: birthDate?.toISOString()
+    }))
 });
