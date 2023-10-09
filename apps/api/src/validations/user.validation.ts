@@ -3,11 +3,14 @@ import { z } from 'zod';
 // Validators
 import { commonSchema } from '@/validations';
 
+// Utils
+import { dateFormat, dateTemplates } from '@/utils';
+
 export const userSchema = commonSchema.extend({
   firstName: z.string().min(2),
   lastName: z.string().min(2),
   displayName: z.string(),
-  birthDate: z.date(),
+  birthDate: z.coerce.date(),
   email: z.string().email(),
   password: z.string(),
   role: z.enum(['user', 'admin']).default('user'),
@@ -32,7 +35,11 @@ export const userCreateSchema = z.object({
     .omit({ id: true, createdAt: true, updatedAt: true })
     .transform(({ birthDate, ...rest }) => ({
       ...rest,
-      birthDate: birthDate.toISOString()
+      birthDate: dateFormat({
+        value: birthDate,
+        ...dateTemplates['YYYY-MM-DD'],
+        options: { ...dateTemplates['YYYY-MM-DD']['options'], timeZone: 'UTC' }
+      })
     }))
 });
 
@@ -45,7 +52,13 @@ export const userUpdateSchema = z.object({
     .partial()
     .transform(({ birthDate, ...rest }) => ({
       ...rest,
-      birthDate: birthDate?.toISOString()
+      ...(birthDate && {
+        birthDate: dateFormat({
+          value: birthDate,
+          ...dateTemplates['YYYY-MM-DD'],
+          options: { ...dateTemplates['YYYY-MM-DD']['options'], timeZone: 'UTC' }
+        })
+      })
     }))
 });
 

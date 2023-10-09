@@ -1,5 +1,5 @@
 import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
-import { sql } from 'drizzle-orm';
+import { sql, type InferSelectModel } from 'drizzle-orm';
 
 export const userSchema = sqliteTable('user', {
   id: integer('id', { mode: 'number' }).primaryKey({ autoIncrement: true }),
@@ -20,3 +20,5 @@ export const userSchema = sqliteTable('user', {
     .notNull()
     .default(sql`CURRENT_TIMESTAMP`)
 });
+
+export type TUserSchema = InferSelectModel<typeof userSchema>;

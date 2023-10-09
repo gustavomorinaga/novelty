@@ -20,21 +20,13 @@ export const userModel = new Elysia({ name: '@apps/api/models/user' }).model({
     t.Null()
   ]),
 
-  'user.create.body': t.Composite([
-    t.Omit(userSchema, ['id', 'birthDate', 'createdAt', 'updatedAt']),
-    t.Object({ birthDate: t.String() })
-  ]),
+  'user.create.body': t.Omit(userSchema, ['id', 'createdAt', 'updatedAt']),
   'user.create.response': t.Composite([
     t.Omit(userSchema, ['birthDate', 'password', 'createdAt', 'updatedAt']),
     t.Object({ birthDate: t.String(), createdAt: t.String(), updatedAt: t.String() })
   ]),
 
-  'user.update.body': t.Partial(
-    t.Composite([
-      t.Omit(userSchema, ['id', 'birthDate', 'createdAt', 'updatedAt']),
-      t.Object({ birthDate: t.String() })
-    ])
-  ),
+  'user.update.body': t.Omit(userSchema, ['id', 'createdAt', 'updatedAt']),
   'user.update.response': t.Composite([
     t.Omit(userSchema, ['birthDate', 'password', 'createdAt', 'updatedAt']),
     t.Object({ birthDate: t.String(), createdAt: t.String(), updatedAt: t.String() })

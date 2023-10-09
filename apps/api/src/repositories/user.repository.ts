@@ -1,7 +1,7 @@
 import { eq, like } from 'drizzle-orm';
 
 // Databases
-import { apiDB, schema } from '@/databases';
+import { apiDB, schema, type TUserSchema } from '@/databases';
 
 // Types
 import type {
@@ -21,7 +21,9 @@ type TUserRepositoryFindAll = TUserRepository & TUserSelectSchema;
 type TUserRepositoryFindById = TUserRepository & TUserFindSchema;
 type TUserRepositoryCreate = TUserRepository & TUserCreateSchema;
 type TUserRepositoryUpdate = TUserRepository & TUserUpdateSchema;
-type TUserRepositoryActivation = TUserRepository & TUserActivationSchema & { active: boolean };
+type TUserRepositoryActivation = TUserRepository &
+  TUserActivationSchema &
+  Pick<TUserSchema, 'active'>;
 
 export const userRepository = {
   async findAll({ db, schema: users, query }: TUserRepositoryFindAll) {
