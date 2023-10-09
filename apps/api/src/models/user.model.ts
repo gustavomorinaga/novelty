@@ -38,5 +38,14 @@ export const userModel = new Elysia({ name: '@apps/api/models/user' }).model({
   'user.update.response': t.Composite([
     t.Omit(userSchema, ['birthDate', 'password', 'createdAt', 'updatedAt']),
     t.Object({ birthDate: t.String(), createdAt: t.String(), updatedAt: t.String() })
+  ]),
+
+  'user.activate.response': t.Composite([
+    t.Omit(userSchema, ['birthDate', 'password', 'createdAt', 'updatedAt']),
+    t.Object({ birthDate: t.String(), createdAt: t.String(), updatedAt: t.String() })
+  ]),
+  'user.deactivate.response': t.Composite([
+    t.Omit(userSchema, ['birthDate', 'password', 'createdAt', 'updatedAt']),
+    t.Object({ birthDate: t.String(), createdAt: t.String(), updatedAt: t.String() })
   ])
 });

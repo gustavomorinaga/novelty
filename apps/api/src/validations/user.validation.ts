@@ -10,16 +10,20 @@ export const userSchema = commonSchema.extend({
   birthDate: z.date(),
   email: z.string().email(),
   password: z.string(),
-  role: z.enum(['user', 'admin']).default('user')
+  role: z.enum(['user', 'admin']).default('user'),
+  active: z.boolean().default(true)
 });
 
 export const userSelectSchema = z.object({
-  query: userSchema.pick({ displayName: true, email: true, role: true }).partial()
+  query: userSchema
+    .pick({ displayName: true, email: true, role: true })
+    .extend({ active: z.coerce.boolean() })
+    .partial()
 });
 
 export const userFindSchema = z.object({
   params: z.object({
-    id: z.coerce.number().min(0)
+    id: z.coerce.number().positive()
   })
 });
 
@@ -34,7 +38,7 @@ export const userCreateSchema = z.object({
 
 export const userUpdateSchema = z.object({
   params: z.object({
-    id: z.coerce.number().min(0)
+    id: z.coerce.number().positive()
   }),
   body: userSchema
     .omit({ id: true, password: true, createdAt: true, updatedAt: true })
@@ -45,8 +49,15 @@ export const userUpdateSchema = z.object({
     }))
 });
 
+export const userActivationSchema = z.object({
+  params: z.object({
+    id: z.coerce.number().positive()
+  })
+});
+
 export type TUserSchema = z.infer<typeof userSchema>;
 export type TUserSelectSchema = z.infer<typeof userSelectSchema>;
 export type TUserFindSchema = z.infer<typeof userFindSchema>;
 export type TUserCreateSchema = z.infer<typeof userCreateSchema>;
 export type TUserUpdateSchema = z.infer<typeof userUpdateSchema>;
+export type TUserActivationSchema = z.infer<typeof userActivationSchema>;

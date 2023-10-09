@@ -5,6 +5,7 @@ import { apiDB, schema } from '@/databases';
 
 // Types
 import type {
+  TUserActivationSchema,
   TUserCreateSchema,
   TUserFindSchema,
   TUserSelectSchema,
@@ -20,6 +21,7 @@ type TUserRepositoryFindAll = TUserRepository & TUserSelectSchema;
 type TUserRepositoryFindById = TUserRepository & TUserFindSchema;
 type TUserRepositoryCreate = TUserRepository & TUserCreateSchema;
 type TUserRepositoryUpdate = TUserRepository & TUserUpdateSchema;
+type TUserRepositoryActivation = TUserRepository & TUserActivationSchema & { active: boolean };
 
 export const userRepository = {
   async findAll({ db, schema: users, query }: TUserRepositoryFindAll) {
@@ -32,6 +34,7 @@ export const userRepository = {
         birthDate: users.birthDate,
         email: users.email,
         role: users.role,
+        active: users.active,
         createdAt: users.createdAt,
         updatedAt: users.updatedAt
       })
@@ -49,6 +52,7 @@ export const userRepository = {
         birthDate: users.birthDate,
         email: users.email,
         role: users.role,
+        active: users.active,
         createdAt: users.createdAt,
         updatedAt: users.updatedAt
       })
@@ -74,6 +78,7 @@ export const userRepository = {
         birthDate: users.birthDate,
         email: users.email,
         role: users.role,
+        active: users.active,
         createdAt: users.createdAt,
         updatedAt: users.updatedAt
       });
@@ -97,6 +102,31 @@ export const userRepository = {
         birthDate: users.birthDate,
         email: users.email,
         role: users.role,
+        active: users.active,
+        createdAt: users.createdAt,
+        updatedAt: users.updatedAt
+      });
+
+    return user;
+  },
+
+  async changeActivation({ db, schema: users, params: { id }, active }: TUserRepositoryActivation) {
+    const now = new Date();
+    const updatedAt = now.toISOString();
+
+    const [user] = await db
+      .update(users)
+      .set({ active, updatedAt })
+      .where(eq(users.id, id))
+      .returning({
+        id: users.id,
+        firstName: users.firstName,
+        lastName: users.lastName,
+        displayName: users.displayName,
+        birthDate: users.birthDate,
+        email: users.email,
+        role: users.role,
+        active: users.active,
         createdAt: users.createdAt,
         updatedAt: users.updatedAt
       });

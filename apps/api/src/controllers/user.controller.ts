@@ -90,4 +90,44 @@ export const userController = new Elysia({
           response: 'user.update.response'
         }
       )
+      .patch(
+        '/:id/activate',
+        async ({ db, schema: { users }, params }) => {
+          const { params: args } = await zParse(userFindSchema, { params });
+
+          return await userRepository.changeActivation({
+            db,
+            schema: users,
+            params: args,
+            active: true
+          });
+        },
+        {
+          detail: {
+            summary: 'Activate a user by ID',
+            tags: ['Users']
+          },
+          response: 'user.activate.response'
+        }
+      )
+      .patch(
+        '/:id/deactivate',
+        async ({ db, schema: { users }, params }) => {
+          const { params: args } = await zParse(userFindSchema, { params });
+
+          return await userRepository.changeActivation({
+            db,
+            schema: users,
+            params: args,
+            active: false
+          });
+        },
+        {
+          detail: {
+            summary: 'Deactivate a user by ID',
+            tags: ['Users']
+          },
+          response: 'user.deactivate.response'
+        }
+      )
   );
