@@ -8,6 +8,7 @@
 	"eslint.format.enable": true,
 	"material-icon-theme.folders.associations": {
 		"migrations": "database",
-		"repositories": "packages"
+		"repositories": "packages",
+		"ui": "components"
 	}
 }
