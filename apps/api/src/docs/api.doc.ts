@@ -19,9 +19,11 @@ export const apiDoc: ElysiaSwaggerConfig = {
         url: 'https://github.com/gustavomorinaga/novelty/blob/main/LICENSE'
       }
     },
-    tags: ['Authors', 'Books', 'Genres', 'Publishers', 'Reviews', 'Series', 'Users'].map(tag => ({
-      name: tag,
-      description: `Operations about ${tag.toLowerCase()}`
-    }))
+    tags: ['Auth', 'Authors', 'Books', 'Genres', 'Publishers', 'Reviews', 'Series', 'Users'].map(
+      tag => ({
+        name: tag,
+        description: `Operations about ${tag.toLowerCase()}`
+      })
+    )
   }
 };

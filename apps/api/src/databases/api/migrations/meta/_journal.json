@@ -1,1 +1,13 @@
-{"version":"5","dialect":"sqlite","entries":[{"idx":0,"version":"5","when":1696535714074,"tag":"0000_shocking_phalanx","breakpoints":true},{"idx":1,"version":"5","when":1696576627092,"tag":"0001_exotic_vivisector","breakpoints":true}]}
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1697080919266,
+      "tag": "0000_marvelous_zarek",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,13 +1,74 @@
 import { Elysia } from 'elysia';
+import { cookie } from '@elysiajs/cookie';
 
-// Middlewares
-import { JWTMiddleware } from '@/middlewares';
+// Auth
+import { authProviders } from '@/auth';
 
-export const authController = (app: Elysia) =>
-  app.group('/auth', app =>
-    app.use(JWTMiddleware).post('/sign-in', async ({ jwt, params }) => {
-      const accessToken = await jwt.sign(params);
+// Configs
+import { environment } from '@/configs';
 
-      return accessToken;
-    })
+// Contexts
+import { apiContext } from '@/contexts';
+
+export const authController = new Elysia({
+  name: '@apps/api/controllers/auth'
+})
+  .use(cookie())
+  .use(apiContext)
+  .group('/auth', handler =>
+    handler
+      .get(
+        '/login/google',
+        async ({ set, setCookie }) => {
+          const [url, state] = await authProviders.google.getAuthorizationUrl();
+
+          setCookie('google_auth_state', state, {
+            maxAge: 60 * 60,
+            httpOnly: true,
+            secure: environment.ENV === 'production',
+            path: '/'
+          });
+
+          set.redirect = String(url);
+        },
+        {
+          detail: {
+            summary: 'Login with Google',
+            tags: ['Auth']
+          }
+        }
+      )
+      .get('/google/callback', async () => {}, {
+        detail: {
+          summary: 'Google callback',
+          tags: ['Auth']
+        }
+      })
+      .get(
+        '/login/facebook',
+        async ({ set, setCookie }) => {
+          const [url, state] = await authProviders.facebook.getAuthorizationUrl();
+
+          setCookie('facebook_auth_state', state, {
+            maxAge: 60 * 60,
+            httpOnly: true,
+            secure: environment.ENV === 'production',
+            path: '/'
+          });
+
+          set.redirect = String(url);
+        },
+        {
+          detail: {
+            summary: 'Login with Facebook',
+            tags: ['Auth']
+          }
+        }
+      )
+      .get('/facebook/callback', async () => {}, {
+        detail: {
+          summary: 'Facebook callback',
+          tags: ['Auth']
+        }
+      })
   );

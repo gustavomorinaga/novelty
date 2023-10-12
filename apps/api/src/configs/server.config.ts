@@ -2,8 +2,6 @@ import { cors } from '@elysiajs/cors';
 import { helmet } from 'elysia-helmet';
 // import { rateLimit } from 'elysia-rate-limit';
 import { logger } from '@bogeychan/elysia-logger';
-import { bearer } from '@elysiajs/bearer';
-import { cookie } from '@elysiajs/cookie';
 import { swagger } from '@elysiajs/swagger';
 
 // Configs
@@ -25,16 +23,15 @@ export const serverConfig = {
   api: {
     name: '@api',
     prefix: '/api',
+    host: environment.API_HOSTNAME,
     port: environment.API_PORT,
     plugins: [
       cors(),
       helmet(apiSec),
       // rateLimit(),
-      bearer(),
-      cookie(),
       logger(),
       swagger(apiDoc)
     ],
-    modules: [controllers.userController]
-  } as TAppConfig<'/api'>
+    modules: [...Object.values(controllers)]
+  } satisfies TAppConfig<'/api'>
 };

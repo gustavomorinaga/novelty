@@ -5,12 +5,14 @@ import type { TAppConfig } from '@/ts';
 
 export class App<T extends string = ''> {
   private app: Elysia<T>;
+  private host: TAppConfig['host'];
   private port: TAppConfig['port'];
   private plugins: TAppConfig['plugins'] = [];
   private modules: TAppConfig['modules'] = [];
 
-  constructor({ port, plugins, modules, ...props }: TAppConfig<T>) {
+  constructor({ host, port, plugins, modules, ...props }: TAppConfig<T>) {
     this.app = new Elysia(props);
+    this.host = host;
     this.port = port;
     this.plugins = plugins;
     this.modules = modules;
@@ -29,8 +31,8 @@ export class App<T extends string = ''> {
   }
 
   public start() {
-    return this.app.listen(this.port, ({ hostname, port }) => {
-      console.log(`Server running at http://${hostname}:${port}`);
+    return this.app.listen(this.port, () => {
+      console.log(`Server running at ${this.host}:${this.port}`);
     });
   }
 }

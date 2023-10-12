@@ -1,10 +1,11 @@
 import { Elysia, type ElysiaConfig } from 'elysia';
 
 export type TElysiaCallback = (app: Elysia) => Elysia;
-export type TElysiaPlugin = Elysia | TElysiaCallback;
+export type TElysiaInjection = Elysia | TElysiaCallback;
 
 export type TAppConfig<T extends string = ''> = ElysiaConfig<T> & {
+  host: string;
   port: number;
-  plugins: Array<TElysiaPlugin>;
-  modules: Array<Elysia>;
+  plugins: Array<TElysiaInjection>;
+  modules: Array<TElysiaInjection>;
 };

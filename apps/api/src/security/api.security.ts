@@ -6,7 +6,9 @@ export const apiSec = {
       defaultSrc: ["'self'"],
       baseUri: ["'self'"],
       scriptSrc: ["'self'", "'unsafe-inline'", 'https://unpkg.com'],
-      styleSrc: ["'self'", "'unsafe-inline'", 'https://unpkg.com']
+      styleSrc: ["'self'", "'unsafe-inline'", 'https://unpkg.com'],
+      connectSrc: ["'self'", 'https://accounts.google.com', 'https://*.facebook.com'],
+      frameSrc: ["'self'", 'https://accounts.google.com', 'https://*.facebook.com']
     }
   }
 };

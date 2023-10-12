@@ -4,7 +4,7 @@ import { t } from 'elysia';
 import { commonSchema } from '@/schemas';
 
 export const userSchema = t.Composite([
-  commonSchema,
+  t.Composite([t.Pick(commonSchema, ['createdAt', 'updatedAt']), t.Object({ id: t.String() })]),
   t.Object({
     firstName: t.String({ default: 'John' }),
     lastName: t.String({ default: 'Doe' }),
