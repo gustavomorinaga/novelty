@@ -4,7 +4,7 @@ import { Elysia } from 'elysia';
 import { apiDB, schema } from '@/databases';
 
 export const apiContext = new Elysia({
-  name: '@apps/api/context'
+	name: '@apps/api/context'
 })
-  .decorate('db', apiDB)
-  .decorate('schema', schema);
+	.decorate('db', apiDB)
+	.decorate('schema', schema);

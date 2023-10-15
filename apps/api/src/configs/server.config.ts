@@ -20,18 +20,18 @@ import * as controllers from '@/controllers';
 import type { TAppConfig } from '@/ts';
 
 export const serverConfig = {
-  api: {
-    name: '@api',
-    prefix: '/api',
-    host: environment.API_HOSTNAME,
-    port: environment.API_PORT,
-    plugins: [
-      cors(),
-      helmet(apiSec),
-      // rateLimit(),
-      logger(),
-      swagger(apiDoc)
-    ],
-    modules: [...Object.values(controllers)]
-  } satisfies TAppConfig<'/api'>
+	api: {
+		name: '@api',
+		prefix: '/api',
+		host: environment.API_HOSTNAME,
+		port: environment.API_PORT,
+		plugins: [
+			cors(),
+			helmet(apiSec),
+			// rateLimit(),
+			logger(),
+			swagger(apiDoc)
+		],
+		modules: [...Object.values(controllers)]
+	} satisfies TAppConfig<'/api'>
 };

@@ -1,0 +1,12 @@
+{
+	"extends": "@tsconfig/svelte/tsconfig.json",
+	"include": ["components", "utils"],
+	"exclude": ["node_modules"],
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@ui/components": ["./components"],
+			"@ui/utils": ["./utils"]
+		}
+	}
+}

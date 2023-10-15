@@ -1,38 +1,35 @@
 {
-  "name": "api",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "bun run --watch src/index.ts",
-    "build": "bun build",
-    "lint": "prettier --plugin-search-dir . --check . && eslint .",
-    "format": "prettier --plugin-search-dir . --write .",
-    "db:generate": "drizzle-kit generate:sqlite",
-    "db:drop": "drizzle-kit drop"
-  },
-  "dependencies": {
-    "@bogeychan/elysia-logger": "0.0.11",
-    "@elysiajs/bearer": "0.7.0",
-    "@elysiajs/cookie": "0.7.0",
-    "@elysiajs/cors": "0.7.1",
-    "@elysiajs/jwt": "0.7.0",
-    "@elysiajs/swagger": "0.7.3",
-    "@libsql/client": "0.3.5",
-    "@lucia-auth/adapter-sqlite": "2.0.0",
-    "@lucia-auth/oauth": "3.3.1",
-    "drizzle-orm": "0.28.6",
-    "elysia": "latest",
-    "elysia-helmet": "1.0.1",
-    "elysia-rate-limit": "1.2.0",
-    "lucia": "2.7.1",
-    "zod": "3.22.4"
-  },
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "6.7.4",
-    "@typescript-eslint/parser": "6.7.4",
-    "bun-types": "latest",
-    "drizzle-kit": "0.19.13",
-    "eslint": "8.50.0",
-    "eslint-config-prettier": "9.0.0"
-  }
+	"name": "api",
+	"version": "0.0.1",
+	"private": true,
+	"scripts": {
+		"dev": "bun run --watch src/index.ts",
+		"build": "bun build",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"db:generate": "drizzle-kit generate:sqlite",
+		"db:drop": "drizzle-kit drop"
+	},
+	"dependencies": {
+		"@bogeychan/elysia-logger": "0.0.11",
+		"@elysiajs/bearer": "0.7.0",
+		"@elysiajs/cookie": "0.7.0",
+		"@elysiajs/cors": "0.7.1",
+		"@elysiajs/jwt": "0.7.0",
+		"@elysiajs/swagger": "0.7.3",
+		"@libsql/client": "0.3.5",
+		"@lucia-auth/adapter-sqlite": "2.0.0",
+		"@lucia-auth/oauth": "3.3.1",
+		"drizzle-orm": "0.28.6",
+		"elysia": "latest",
+		"elysia-helmet": "1.0.1",
+		"elysia-rate-limit": "1.2.0",
+		"lucia": "2.7.1",
+		"zod": "3.22.4"
+	},
+	"devDependencies": {
+		"bun-types": "latest",
+		"drizzle-kit": "0.19.13",
+		"eslint-config-custom": "*"
+	}
 }
