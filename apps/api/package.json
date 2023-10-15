@@ -30,6 +30,6 @@
 	"devDependencies": {
 		"bun-types": "latest",
 		"drizzle-kit": "0.19.13",
-		"eslint-config-custom": "*"
+		"eslint-config-custom": "workspace:^"
 	}
 }

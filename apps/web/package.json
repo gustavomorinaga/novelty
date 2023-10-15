@@ -16,7 +16,7 @@
 		"test:unit": "vitest"
 	},
 	"dependencies": {
-		"ui": "*"
+		"ui": "workspace:^"
 	},
 	"devDependencies": {
 		"@playwright/test": "1.39.0",
@@ -24,7 +24,7 @@
 		"@sveltejs/kit": "1.25.2",
 		"autoprefixer": "10.4.16",
 		"cssnano": "6.0.1",
-		"eslint-config-custom": "*",
+		"eslint-config-custom": "workspace:^",
 		"postcss": "8.4.31",
 		"postcss-load-config": "4.0.1",
 		"postcss-nested": "6.0.1",

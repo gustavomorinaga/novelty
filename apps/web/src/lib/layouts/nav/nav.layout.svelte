@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Slider } from 'ui/components';
+	import { Card } from 'ui/components';
 </script>
 
 <nav>
-	<Slider />
+	<Card />
 </nav>

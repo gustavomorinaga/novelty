@@ -3,7 +3,9 @@ import { twMerge } from 'tailwind-merge';
 import { cubicOut } from 'svelte/easing';
 import type { TransitionConfig } from 'svelte/transition';
 
-export const cn = (...inputs: ClassValue[]) => twMerge(clsx(inputs));
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs));
+}
 
 type FlyAndScaleParams = {
 	y?: number;

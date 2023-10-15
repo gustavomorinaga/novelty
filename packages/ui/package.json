@@ -3,7 +3,10 @@
 	"version": "0.0.1",
 	"private": true,
 	"license": "MIT",
-	"types": "index.d.ts",
+	"type": "module",
+	"main": "./index.ts",
+	"module": "./index.ts",
+	"svelte": "./components/index.ts",
 	"scripts": {
 		"ui:add": "bunx shadcn-svelte@latest add",
 		"lint": "prettier --check . && eslint .",
@@ -26,6 +29,6 @@
 	},
 	"devDependencies": {
 		"@tsconfig/svelte": "5.0.2",
-		"eslint-config-custom": "*"
+		"eslint-config-custom": "workspace:^"
 	}
 }
