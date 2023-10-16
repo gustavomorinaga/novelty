@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Slider as SliderPrimitive } from 'bits-ui';
-	import { cn } from '@ui/utils';
+	import { cn } from '$ui/utils';
 
 	type $$Props = SliderPrimitive.Props;
 

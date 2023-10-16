@@ -5,4 +5,4 @@ import Trigger from './tabs-trigger.svelte';
 
 const Root = TabsPrimitive.Root;
 
-export { Root as Tabs, Content as TabsContent, List as TabsList, Trigger as TabsTrigger };
+export const Tabs = { Root, Content, List, Trigger };

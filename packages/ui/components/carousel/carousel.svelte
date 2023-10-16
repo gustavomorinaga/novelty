@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { register, type SwiperContainer } from 'swiper/element/bundle';
-	import { cn } from '@ui/utils';
+	import { cn } from '$ui/utils';
 	import type { HTMLAttributes } from 'svelte/elements';
 	import type { SwiperOptions } from 'swiper/types';
 

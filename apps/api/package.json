@@ -1,5 +1,5 @@
 {
-	"name": "api",
+	"name": "@novelty/api",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
@@ -28,8 +28,8 @@
 		"zod": "3.22.4"
 	},
 	"devDependencies": {
+		"@novelty/eslint-config-custom": "workspace:^",
 		"bun-types": "latest",
-		"drizzle-kit": "0.19.13",
-		"eslint-config-custom": "workspace:^"
+		"drizzle-kit": "0.19.13"
 	}
 }

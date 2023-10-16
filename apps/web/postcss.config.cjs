@@ -1,1 +1,1 @@
-module.exports = require('ui/postcss.config.cjs');
+module.exports = require('@novelty/ui/postcss.config');

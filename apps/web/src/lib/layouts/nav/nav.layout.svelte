@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { Card } from 'ui/components';
+	import { Button } from '@novelty/ui/components';
 </script>
 
 <nav>
-	<Card />
+	<Button>Button</Button>
 </nav>

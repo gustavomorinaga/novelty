@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Tabs as TabsPrimitive } from 'bits-ui';
-	import { cn } from '@ui/utils';
+	import { cn } from '$ui/utils';
 
 	type $$Props = TabsPrimitive.ListProps;
 
