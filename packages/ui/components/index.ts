@@ -3,6 +3,7 @@ export * from './avatar';
 export * from './button';
 export * from './card';
 export * from './carousel';
+export * from './icon';
 export * from './input';
 export * from './label';
 export * from './skeleton';

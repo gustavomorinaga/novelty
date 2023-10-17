@@ -1,6 +1,12 @@
 <script>
-	import '../lib/styles/app.style.postcss';
+	import '$lib/styles/app.style.postcss';
 </script>
+
+<svelte:head>
+	<link rel="icon" href="https://fav.farm/📙" />
+	<title>Novelty</title>
+	<meta name="description" content="Novelty Book Store" />
+</svelte:head>
 
 <main>
 	<slot />
@@ -8,6 +14,6 @@
 
 <style lang="postcss">
 	main {
-		@apply mx-auto min-h-screen max-w-6xl p-4;
+		@apply mx-auto flex min-h-screen max-w-6xl flex-col p-4;
 	}
 </style>
