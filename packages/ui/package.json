@@ -16,8 +16,8 @@
 		"./utils": {
 			"default": "./utils/index.ts"
 		},
-		"./styles": {
-			"default": "./styles/default.style.postcss"
+		"./theme": {
+			"default": "./styles/theme.postcss"
 		},
 		"./postcss.config": {
 			"default": "./postcss.config.cjs"
