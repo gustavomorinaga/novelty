@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { Button } from '@novelty/ui/components';
-	import { fade } from 'svelte/transition';
+	import { scale } from 'svelte/transition';
+	import type { HTMLImgAttributes } from 'svelte/elements';
 
-	const sampleBooks: Array<{ src: string; alt: string }> = [
+	const sampleBooks: Array<HTMLImgAttributes> = [
 		{
 			src: 'covers/above-all-else-cover-hires.jpg',
 			alt: 'Above All Else'
@@ -37,7 +38,7 @@
 				{@const rotate = `${index * 22.5}deg`}
 				{@const stack = sampleBooks.length - index}
 
-				<img {src} {alt} style:--rotate={rotate} style:--stack={stack} in:fade />
+				<img {src} {alt} style:--rotate={rotate} style:--stack={stack} />
 			{/each}
 		</div>
 	</div>
