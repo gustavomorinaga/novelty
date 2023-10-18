@@ -1,21 +1,20 @@
 <script>
+	import { CTA } from '$lib/components';
 	import { HeaderActionsLayout } from '$lib/layouts';
 	import { Button, Icon } from '@novelty/ui/components';
 </script>
 
-<HeaderActionsLayout title="Home">
+<HeaderActionsLayout title="Settings">
 	<svelte:fragment slot="prefix">
-		<Button size="icon" variant="secondary">
-			<Icon class="text-xl" icon="mingcute:classify-fill" />
+		<Button size="icon" variant="secondary" href="/">
+			<Icon class="text-xl" icon="mingcute:left-fill" />
 		</Button>
 	</svelte:fragment>
 	<svelte:fragment slot="suffix">
 		<Button size="icon" variant="secondary">
-			<Icon class="text-xl" icon="mingcute:notification-fill" />
+			<Icon class="text-xl" icon="mingcute:pencil-fill" />
 		</Button>
 	</svelte:fragment>
 </HeaderActionsLayout>
 
-<h1>Which book do you want to buy?</h1>
-
-<p class="muted">Here is a list of books you can buy.</p>
+<CTA>Log Out</CTA>

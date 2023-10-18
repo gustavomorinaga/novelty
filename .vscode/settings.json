@@ -4,7 +4,7 @@
 		"source.fixAll.eslint": true,
 		"source.organizeImports": false
 	},
-	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
 	"eslint.format.enable": true,
 	"material-icon-theme.folders.associations": {
 		"migrations": "database",

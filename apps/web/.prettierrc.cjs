@@ -1,3 +1,1 @@
-module.exports = {
-	...require('@novelty/eslint-config-custom/.prettierrc')
-};
+module.exports = require('@novelty/eslint-config-custom/.prettierrc');

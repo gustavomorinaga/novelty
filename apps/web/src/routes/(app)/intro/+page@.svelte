@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { Button } from '@novelty/ui/components';
-	import { scale } from 'svelte/transition';
 	import type { HTMLImgAttributes } from 'svelte/elements';
+	import { CTA } from '$lib/components';
 
 	const sampleBooks: Array<HTMLImgAttributes> = [
 		{
@@ -48,9 +47,7 @@
 	<p class="lead">Let's read book with our book shope</p>
 </section>
 
-<div class="cta">
-	<Button href="/">Get Started</Button>
-</div>
+<CTA href="/">Get Started</CTA>
 
 <style lang="postcss">
 	section.intro {

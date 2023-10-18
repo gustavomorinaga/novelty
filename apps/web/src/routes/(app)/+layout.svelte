@@ -1,7 +1,7 @@
 <script>
-	import { NavLayout } from '$lib/layouts';
+	import { BottomTabsLayout } from '$lib/layouts';
 </script>
 
 <slot />
 
-<NavLayout />
+<BottomTabsLayout />

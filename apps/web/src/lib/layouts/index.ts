@@ -1,1 +1,2 @@
-export * from './nav';
+export * from './bottom-tabs';
+export * from './header-actions';
