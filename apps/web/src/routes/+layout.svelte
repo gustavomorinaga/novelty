@@ -3,7 +3,6 @@
 </script>
 
 <svelte:head>
-	<link rel="icon" href="https://fav.farm/📙" />
 	<title>Novelty</title>
 	<meta name="description" content="Novelty Book Store" />
 </svelte:head>

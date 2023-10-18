@@ -44,7 +44,7 @@
 
 	<h1>Novelty</h1>
 
-	<p class="lead">Let's read book with our book shope</p>
+	<p class="lead text-balance">Let's read book with our book shope</p>
 </section>
 
 <CTA href="/">Get Started</CTA>

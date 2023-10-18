@@ -6,7 +6,7 @@
 </script>
 
 <div class="cta">
-	<Button size="lg" class="w-full text-base" {...$$restProps}>
+	<Button size="lg" class="w-full text-base font-semibold" {...$$restProps}>
 		<slot />
 	</Button>
 </div>

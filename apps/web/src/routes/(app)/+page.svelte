@@ -16,6 +16,6 @@
 	</svelte:fragment>
 </HeaderActionsLayout>
 
-<h1>Which book do you want to buy?</h1>
+<h1 class="text-balance">Which book do you want to buy?</h1>
 
 <p class="muted">Here is a list of books you can buy.</p>
