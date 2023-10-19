@@ -1,2 +1,2 @@
-export * from './bottom-tabs';
-export * from './header-actions';
+export * from './carousels';
+export * from './navigation';

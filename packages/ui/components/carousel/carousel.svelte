@@ -3,14 +3,14 @@
 	import { register, type SwiperContainer } from 'swiper/element/bundle';
 	import { cn } from '$ui/utils';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { SwiperOptions } from 'swiper/types';
+	import type { SwiperEvents, SwiperOptions } from 'swiper/types';
 
-	type $$Props = HTMLAttributes<HTMLElement>;
-
-	export let options: SwiperOptions = {};
+	type $$Props = HTMLAttributes<SwiperContainer> & { options: SwiperOptions };
+	type $$Events = SwiperEvents;
 
 	let ref: SwiperContainer & { initialize: () => void };
 	let className: $$Props['class'] = undefined;
+	export let options: $$Props['options'] = {};
 	export { className as class };
 
 	onMount(() => {
@@ -21,7 +21,7 @@
 </script>
 
 <swiper-container
-	class={cn('relative block overflow-hidden', className)}
+	class={cn('relative block w-full overflow-hidden', className)}
 	{...$$restProps}
 	bind:this={ref}
 	init="false"

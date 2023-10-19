@@ -44,10 +44,10 @@
 
 <style lang="postcss">
 	nav.bottom-tabs {
-		@apply fixed inset-x-4 bottom-4 block;
+		@apply fixed inset-x-4 bottom-4 z-50 block;
 
 		& > ul {
-			@apply bg-muted m-0 mx-auto flex w-[75vw] list-none justify-between rounded-lg p-4;
+			@apply bg-muted m-0 mx-auto flex w-[75vw] list-none justify-between rounded-lg p-4 shadow;
 
 			& > li {
 				@apply m-0 p-0;

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { HTMLImgAttributes } from 'svelte/elements';
 	import { CTA } from '$lib/components';
+	import type { HTMLImgAttributes } from 'svelte/elements';
 
 	const sampleBooks: Array<HTMLImgAttributes> = [
 		{
