@@ -8,7 +8,7 @@
 	type $$Props = HTMLAttributes<SwiperContainer> & { options: SwiperOptions };
 	type $$Events = SwiperEvents;
 
-	let ref: SwiperContainer & { initialize: () => void };
+	let ref: SwiperContainer;
 	let className: $$Props['class'] = undefined;
 	export let options: $$Props['options'] = {};
 	export { className as class };

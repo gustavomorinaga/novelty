@@ -1,54 +1,67 @@
 <script lang="ts">
 	import { BookSwipeLayout, HeaderActionsLayout } from '$lib/layouts';
-	import { Button, Icon, Input } from '@novelty/ui/components';
+	import { Button, Icon, Input, Select } from '@novelty/ui/components';
 	import type { HTMLImgAttributes } from 'svelte/elements';
 
-	const books: Array<{ title: string; price: number; cover: HTMLImgAttributes }> = [
+	const viewOptions = [
 		{
+			value: 'view-all',
+			label: 'View All'
+		}
+	];
+
+	const books: Array<{ slug: string; title: string; price: number; cover: HTMLImgAttributes }> = [
+		{
+			slug: 'above-all-else',
 			title: 'Above All Else',
 			price: 20,
 			cover: {
-				src: 'covers/above-all-else-cover-hires.jpg',
+				src: '/covers/above-all-else-cover-hires.jpg',
 				alt: 'Above All Else'
 			}
 		},
 		{
+			slug: 'baa-baa-black-sheep',
 			title: 'Baa Baa Black Sheep',
 			price: 10,
 			cover: {
-				src: 'covers/baa-baa-black-sheep-hires.jpg',
+				src: '/covers/baa-baa-black-sheep-hires.jpg',
 				alt: 'Baa Baa Black Sheep'
 			}
 		},
 		{
+			slug: 'camel-rider',
 			title: 'Camel Rider',
 			price: 15,
 			cover: {
-				src: 'covers/camel-rider-hires.jpg',
+				src: '/covers/camel-rider-hires.jpg',
 				alt: 'Camel Rider'
 			}
 		},
 		{
+			slug: 'dancing-with-the-dinosaurs',
 			title: 'Dancing with the Dinosaurs',
 			price: 25,
 			cover: {
-				src: 'covers/dancing-with-the-dinosaurs-hires.jpg',
+				src: '/covers/dancing-with-the-dinosaurs-hires.jpg',
 				alt: 'Dancing with the Dinosaurs'
 			}
 		},
 		{
+			slug: 'earth-hour',
 			title: 'Earth Hour',
 			price: 30,
 			cover: {
-				src: 'covers/earth-hour-hires.jpg',
+				src: '/covers/earth-hour-hires.jpg',
 				alt: 'Earth Hour'
 			}
 		},
 		{
+			slug: 'faces-of-the-moon',
 			title: 'Faces of the Moon',
 			price: 35,
 			cover: {
-				src: 'covers/faces-of-the-moon-hires.jpg',
+				src: '/covers/faces-of-the-moon-hires.jpg',
 				alt: 'Faces of the Moon'
 			}
 		}
@@ -80,6 +93,17 @@
 <section id="popular-books">
 	<header>
 		<h3 class="large">Popular Books</h3>
+
+		<Select.Root>
+			<Select.Trigger class="w-32">
+				<Select.Value placeholder="View All" />
+			</Select.Trigger>
+			<Select.Content>
+				{#each viewOptions as option}
+					<Select.Item value={option.value}>{option.label}</Select.Item>
+				{/each}
+			</Select.Content>
+		</Select.Root>
 	</header>
 
 	<BookSwipeLayout {books} />

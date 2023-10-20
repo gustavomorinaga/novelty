@@ -16,7 +16,8 @@
 		"test:unit": "vitest"
 	},
 	"dependencies": {
-		"@novelty/ui": "workspace:^"
+		"@novelty/ui": "workspace:^",
+		"@novelty/utils": "workspace:^"
 	},
 	"devDependencies": {
 		"@novelty/eslint-config-custom": "workspace:^",

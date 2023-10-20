@@ -1,38 +1,41 @@
 <script lang="ts">
 	import { Button, Carousel, CarouselRoot, Icon } from '@novelty/ui/components';
+	import { currencyFormat } from '@novelty/utils';
 	import type { ComponentProps } from 'svelte';
 	import type { HTMLImgAttributes } from 'svelte/elements';
 
-	export let books: Array<{ title: string; price: number; cover: HTMLImgAttributes }>;
+	export let books: Array<{ slug: string; title: string; price: number; cover: HTMLImgAttributes }>;
 
 	const options: ComponentProps<CarouselRoot>['options'] = {
 		slidesPerView: 'auto',
 		centeredSlides: true,
-		autoHeight: true,
 		grabCursor: true,
-		effect: 'cards'
+		effect: 'cards',
+		height: 720
 	};
 </script>
 
 <Carousel.Root class="my-8" {options}>
-	{#each books as { title, price, cover: { src, alt } }}
+	{#each books as { slug, title, price, cover: { src, alt } }}
 		<Carousel.Slide class="flex h-full w-[70vw] items-center justify-center">
-			<figure class="book">
-				<img {src} {alt} />
+			<a href="/browse/{slug}">
+				<figure class="book">
+					<img {src} {alt} />
 
-				<figcaption>
-					<div class="details">
-						<strong>{title}</strong>
-						<span>{price}</span>
-					</div>
+					<figcaption>
+						<div class="details">
+							<strong>{title}</strong>
+							<span>{currencyFormat({ value: price, preset: 'USD' })}</span>
+						</div>
 
-					<div class="actions">
-						<Button size="icon" variant="secondary" title="Favorite">
-							<Icon icon="mingcute:heart-line" />
-						</Button>
-					</div>
-				</figcaption>
-			</figure>
+						<div class="actions">
+							<Button size="icon" variant="secondary" title="Favorite">
+								<Icon icon="mingcute:heart-line" />
+							</Button>
+						</div>
+					</figcaption>
+				</figure>
+			</a>
 		</Carousel.Slide>
 	{/each}
 </Carousel.Root>

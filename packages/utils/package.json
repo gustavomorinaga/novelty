@@ -1,0 +1,20 @@
+{
+	"name": "@novelty/utils",
+	"version": "0.0.1",
+	"private": true,
+	"license": "MIT",
+	"type": "module",
+	"types": "./index.d.ts",
+	"exports": {
+		".": {
+			"default": "./index.ts"
+		}
+	},
+	"scripts": {
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@novelty/eslint-config-custom": "workspace:^"
+	}
+}
