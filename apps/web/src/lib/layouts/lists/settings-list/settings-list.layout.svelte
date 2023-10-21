@@ -1,12 +1,13 @@
 <script lang="ts">
 	import { Button, Icon } from '@novelty/ui/components';
 	import type { ComponentProps } from 'svelte';
+	import type { HTMLAnchorAttributes } from 'svelte/elements';
 
 	type TSetting = {
 		title: string;
 		description: string;
 		icon: ComponentProps<Icon>['icon'];
-		action: () => void;
+		link: Required<Pick<HTMLAnchorAttributes, 'href'>> & Pick<HTMLAnchorAttributes, 'target'>;
 	};
 
 	const settings: Array<TSetting> = [
@@ -14,47 +15,50 @@
 			title: 'My Orders',
 			description: 'View your orders',
 			icon: 'mingcute:documents-fill',
-			action: () => {}
+			link: { href: '/settings/orders' }
 		},
 		{
 			title: 'Payment Methods',
 			description: 'Manage your payment methods',
 			icon: 'mingcute:bank-card-fill',
-			action: () => {}
+			link: { href: '/settings/payment-methods' }
 		},
 		{
 			title: 'My Books',
 			description: 'View your books',
 			icon: 'mingcute:book-5-fill',
-			action: () => {}
+			link: { href: '/settings/books' }
 		},
 		{
 			title: 'Refer Friends',
 			description: 'Earn rewards',
 			icon: 'mingcute:group-fill',
-			action: () => {}
+			link: { href: 'refer-friends' }
 		}
 	];
 </script>
 
 <section id="settings">
 	<ul>
-		{#each settings as { title, description, icon }}
-			<li class="setting">
-				<div>
-					<Icon class="bg-card h-fit w-fit overflow-hidden rounded-full p-2 text-2xl" {icon} />
+		{#each settings as { title, description, icon, link }}
+			<li>
+				<!-- svelte-ignore a11y-missing-attribute -->
+				<a class="setting" {...link}>
+					<div>
+						<Icon class="bg-card h-fit w-fit overflow-hidden rounded-full p-2 text-2xl" {icon} />
+
+						<div>
+							<span class="setting-name">{title}</span>
+							<p class="setting-description muted">{description}</p>
+						</div>
+					</div>
 
 					<div>
-						<span class="setting-name">{title}</span>
-						<p class="setting-description muted">{description}</p>
+						<Button size="icon" variant="outline" {...link}>
+							<Icon class="text-xl" icon="mingcute:right-fill" />
+						</Button>
 					</div>
-				</div>
-
-				<div>
-					<Button size="icon" variant="outline">
-						<Icon class="text-xl" icon="mingcute:right-fill" />
-					</Button>
-				</div>
+				</a>
 			</li>
 		{/each}
 	</ul>
@@ -67,18 +71,22 @@
 		& > ul {
 			@apply m-0 flex list-none flex-col p-0;
 
-			& > li.setting {
-				@apply m-0 flex items-center justify-between gap-4 p-4;
+			& > li {
+				@apply m-0;
 
-				& > div {
-					@apply flex items-center gap-4;
+				& > a.setting {
+					@apply flex items-center justify-between gap-4 p-4;
 
-					& span.setting-name {
-						@apply font-medium;
-					}
+					& > div {
+						@apply flex items-center gap-4;
 
-					& p.setting-description {
-						@apply mt-0;
+						& span.setting-name {
+							@apply font-medium;
+						}
+
+						& p.setting-description {
+							@apply mt-0;
+						}
 					}
 				}
 			}

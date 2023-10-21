@@ -46,13 +46,19 @@ type TCurrencyFormatterProps = {
 };
 
 /**
- * Generic currency formatter
+ * Formats a number as a currency string using the provided options.
+ * @param value - The number to format.
+ * @param locale - The locale to use for formatting. Defaults to 'en-US'.
+ * @param options - The formatting options to use.
+ * @returns The formatted currency string.
  */
 const formatter = ({ value, locale = 'en-US', options }: TFormatterProps) =>
 	new Intl.NumberFormat(locale, options).format(value);
 
 /**
- * Format a currency using the `Intl.NumberFormat API`
+ * Formats a currency value according to a preset or custom template.
+ * @param {TCurrencyFormatterProps} props - The value and preset or custom template to use for formatting.
+ * @returns {string} The formatted currency value.
  */
 export const currencyFormat = ({ value, preset }: TCurrencyFormatterProps) =>
 	formatter({ value, ...(preset && currencyTemplates[preset]) });
