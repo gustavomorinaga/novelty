@@ -4,7 +4,7 @@ import { z } from 'zod';
 import { commonSchema } from '@/validations';
 
 // Utils
-import { dateFormat, dateTemplates } from '@/utils';
+import { dateFormat } from '@novelty/utils';
 
 export const userSchema = commonSchema.extend({
 	firstName: z.string().min(2),
@@ -37,8 +37,7 @@ export const userCreateSchema = z.object({
 			...rest,
 			birthDate: dateFormat({
 				value: birthDate,
-				...dateTemplates['YYYY-MM-DD'],
-				options: { ...dateTemplates['YYYY-MM-DD']['options'], timeZone: 'UTC' }
+				preset: 'YYYY-MM-DD'
 			})
 		}))
 });
@@ -55,11 +54,7 @@ export const userUpdateSchema = z.object({
 			...(birthDate && {
 				birthDate: dateFormat({
 					value: birthDate,
-					...dateTemplates['YYYY-MM-DD'],
-					options: {
-						...dateTemplates['YYYY-MM-DD']['options'],
-						timeZone: 'UTC'
-					}
+					preset: 'YYYY-MM-DD'
 				})
 			})
 		}))

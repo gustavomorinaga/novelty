@@ -6,6 +6,7 @@ export type TElysiaInjection = Elysia | TElysiaCallback;
 export type TAppConfig<T extends string = ''> = ElysiaConfig<T> & {
 	host: string;
 	port: number;
+	url: string;
 	plugins: Array<TElysiaInjection>;
 	modules: Array<TElysiaInjection>;
 };

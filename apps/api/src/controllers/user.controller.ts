@@ -10,7 +10,7 @@ import { userModel } from '@/models';
 import { userRepository } from '@/repositories';
 
 // Utils
-import { zParse } from '@/utils';
+import { zParse } from '@novelty/utils';
 
 // Validators
 import {

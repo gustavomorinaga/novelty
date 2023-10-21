@@ -3,27 +3,27 @@
 
 	const sampleBooks: Array<HTMLImgAttributes> = [
 		{
-			src: 'covers/above-all-else-cover-hires.jpg',
+			src: '/covers/above-all-else-cover-hires.jpg',
 			alt: 'Above All Else'
 		},
 		{
-			src: 'covers/baa-baa-black-sheep-hires.jpg',
+			src: '/covers/baa-baa-black-sheep-hires.jpg',
 			alt: 'Baa Baa Black Sheep'
 		},
 		{
-			src: 'covers/camel-rider-hires.jpg',
+			src: '/covers/camel-rider-hires.jpg',
 			alt: 'Camel Rider'
 		},
 		{
-			src: 'covers/dancing-with-the-dinosaurs-hires.jpg',
+			src: '/covers/dancing-with-the-dinosaurs-hires.jpg',
 			alt: 'Dancing with the Dinosaurs'
 		},
 		{
-			src: 'covers/earth-hour-hires.jpg',
+			src: '/covers/earth-hour-hires.jpg',
 			alt: 'Earth Hour'
 		},
 		{
-			src: 'covers/faces-of-the-moon-hires.jpg',
+			src: '/covers/faces-of-the-moon-hires.jpg',
 			alt: 'Faces of the Moon'
 		}
 	];

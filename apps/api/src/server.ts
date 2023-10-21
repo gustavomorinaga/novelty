@@ -5,15 +5,15 @@ import type { TAppConfig } from '@/ts';
 
 export class App<T extends string = ''> {
 	private app: Elysia<T>;
-	private host: TAppConfig['host'];
 	private port: TAppConfig['port'];
+	private url: TAppConfig['url'];
 	private plugins: TAppConfig['plugins'] = [];
 	private modules: TAppConfig['modules'] = [];
 
-	constructor({ host, port, plugins, modules, ...props }: TAppConfig<T>) {
+	constructor({ port, url, plugins, modules, ...props }: TAppConfig<T>) {
 		this.app = new Elysia(props);
-		this.host = host;
 		this.port = port;
+		this.url = url;
 		this.plugins = plugins;
 		this.modules = modules;
 
@@ -27,12 +27,15 @@ export class App<T extends string = ''> {
 	}
 
 	private registerEvents() {
-		this.app.onError(({ error }) => console.error(`❌ ${error}`));
+		this.app.onError(({ error }) => console.error(`❌ Error: ${JSON.stringify(error)}`));
 	}
 
 	public start() {
 		return this.app.listen(this.port, () => {
-			console.log(`Server running at ${this.host}:${this.port}`);
+			const baseURL = `${this.url}:${this.port}${this.app.config.prefix}`;
+
+			console.log(`🌐 Server running at ${baseURL}`);
+			console.log(`📚 API Docs running at ${baseURL}/swagger`);
 		});
 	}
 }

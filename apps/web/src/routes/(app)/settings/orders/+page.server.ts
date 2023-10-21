@@ -1,6 +1,13 @@
 import type { HTMLImgAttributes } from 'svelte/elements';
 
-type TOrder = { slug: string; title: string; price: number; orderID: string; status: 'processing' | 'delivered' | 'cancelled'; cover: HTMLImgAttributes };
+type TOrder = {
+	slug: string;
+	title: string;
+	price: number;
+	orderID: string;
+	status: 'processing' | 'delivered' | 'cancelled';
+	cover: HTMLImgAttributes;
+};
 
 export const load = async () => {
 	const orders: Array<TOrder> = [

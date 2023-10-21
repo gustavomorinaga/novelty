@@ -6,7 +6,10 @@ export const environmentSchema = z
 
 		API_HOSTNAME: z.coerce.string().default('localhost'),
 		API_PORT: z.coerce.number().default(3000),
-		API_SECURE: z.coerce.boolean().default(false),
+		API_SECURE: z.coerce
+			.string()
+			.default('false')
+			.transform((data) => data === 'true'),
 		API_JWT_SECRET: z.coerce.string(),
 		API_DATABASE_URL: z.coerce.string(),
 		API_DATABASE_TOKEN: z.coerce.string(),

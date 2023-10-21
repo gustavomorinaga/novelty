@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { Button, type ButtonEvents, type ButtonProps } from '@novelty/ui/components';
 
+	/* eslint-disable @typescript-eslint/no-unused-vars */
+
 	type $$Props = ButtonProps;
 	type $$Events = ButtonEvents;
 </script>

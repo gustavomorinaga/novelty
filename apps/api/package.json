@@ -11,21 +11,21 @@
 		"db:drop": "drizzle-kit drop"
 	},
 	"dependencies": {
-		"@bogeychan/elysia-logger": "0.0.11",
+		"@bogeychan/elysia-logger": "0.0.12",
 		"@elysiajs/bearer": "0.7.0",
 		"@elysiajs/cookie": "0.7.0",
 		"@elysiajs/cors": "0.7.1",
 		"@elysiajs/jwt": "0.7.0",
 		"@elysiajs/swagger": "0.7.3",
-		"@libsql/client": "0.3.5",
-		"@lucia-auth/adapter-sqlite": "2.0.0",
+		"@libsql/client": "0.3.6",
+		"@lucia-auth/adapter-sqlite": "2.0.1",
 		"@lucia-auth/oauth": "3.3.1",
+		"@novelty/utils": "workspace:^",
 		"drizzle-orm": "0.28.6",
 		"elysia": "latest",
 		"elysia-helmet": "1.0.1",
 		"elysia-rate-limit": "1.2.0",
-		"lucia": "2.7.1",
-		"zod": "3.22.4"
+		"lucia": "2.7.1"
 	},
 	"devDependencies": {
 		"@novelty/eslint-config-custom": "workspace:^",
