@@ -1,6 +1,7 @@
 import { cors } from '@elysiajs/cors';
 import { helmet } from 'elysia-helmet';
 // import { rateLimit } from 'elysia-rate-limit';
+import { staticPlugin } from '@elysiajs/static';
 import { swagger } from '@elysiajs/swagger';
 import { logger } from '@bogeychan/elysia-logger';
 
@@ -30,6 +31,7 @@ export const serverConfig = {
 			cors(),
 			helmet(apiSec),
 			// rateLimit(),
+			staticPlugin(),
 			swagger(apiDoc),
 			logger()
 		],

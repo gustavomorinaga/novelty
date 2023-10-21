@@ -1,3 +1,4 @@
+import { PUBLIC_API_URI } from '$env/static/public';
 import type { ComponentProps } from 'svelte';
 import type { HTMLImgAttributes } from 'svelte/elements';
 import type { ProfileLayout } from '$lib/layouts';
@@ -19,7 +20,7 @@ export const load = async () => {
 			title: 'Above All Else',
 			price: 20,
 			cover: {
-				src: '/covers/above-all-else-cover-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/above-all-else-cover-hires.jpg`,
 				alt: 'Above All Else'
 			}
 		},
@@ -28,7 +29,7 @@ export const load = async () => {
 			title: 'Baa Baa Black Sheep',
 			price: 10,
 			cover: {
-				src: '/covers/baa-baa-black-sheep-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/baa-baa-black-sheep-hires.jpg`,
 				alt: 'Baa Baa Black Sheep'
 			}
 		},
@@ -37,7 +38,7 @@ export const load = async () => {
 			title: 'Camel Rider',
 			price: 15,
 			cover: {
-				src: '/covers/camel-rider-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/camel-rider-hires.jpg`,
 				alt: 'Camel Rider'
 			}
 		},
@@ -46,7 +47,7 @@ export const load = async () => {
 			title: 'Dancing with the Dinosaurs',
 			price: 25,
 			cover: {
-				src: '/covers/dancing-with-the-dinosaurs-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/dancing-with-the-dinosaurs-hires.jpg`,
 				alt: 'Dancing with the Dinosaurs'
 			}
 		},
@@ -55,7 +56,7 @@ export const load = async () => {
 			title: 'Earth Hour',
 			price: 30,
 			cover: {
-				src: '/covers/earth-hour-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/earth-hour-hires.jpg`,
 				alt: 'Earth Hour'
 			}
 		},
@@ -64,7 +65,7 @@ export const load = async () => {
 			title: 'Faces of the Moon',
 			price: 35,
 			cover: {
-				src: '/covers/faces-of-the-moon-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/faces-of-the-moon-hires.jpg`,
 				alt: 'Faces of the Moon'
 			}
 		}

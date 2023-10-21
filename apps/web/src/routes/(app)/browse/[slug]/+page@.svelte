@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { PUBLIC_API_URI } from '$env/static/public';
 	import { CTA } from '$lib/components';
 	import { BookDetailsLayout, HeaderActionsLayout } from '$lib/layouts';
 	import { Button, Icon } from '@novelty/ui/components';
@@ -15,7 +16,7 @@
 		sold: 500,
 		rating: 4.5,
 		cover: {
-			src: '/covers/above-all-else-cover-hires.jpg',
+			src: `${PUBLIC_API_URI}/public/covers/above-all-else-cover-hires.jpg`,
 			alt: 'Above All Else'
 		}
 	};
