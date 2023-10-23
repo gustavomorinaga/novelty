@@ -43,4 +43,4 @@ const formatter = ({ value, locale = 'en-US', options }: TFormatterProps) =>
  * @returns The formatted date string.
  */
 export const dateFormat = ({ value, preset, options }: TDateFormatterProps) =>
-	formatter({ value, ...(preset && dateTemplates[preset]), ...(options && { options }) });
+	formatter({ value, ...(preset ? dateTemplates[preset] : options) });

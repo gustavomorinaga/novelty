@@ -1,3 +1,4 @@
+import { PUBLIC_API_URI } from '$env/static/public';
 import type { HTMLImgAttributes } from 'svelte/elements';
 
 type TOrder = {
@@ -18,7 +19,7 @@ export const load = async () => {
 			orderID: '1234567890',
 			status: 'processing',
 			cover: {
-				src: '/covers/above-all-else-cover-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/above-all-else-cover-hires.jpg`,
 				alt: 'Above All Else'
 			}
 		},
@@ -29,7 +30,7 @@ export const load = async () => {
 			orderID: '1234567891',
 			status: 'delivered',
 			cover: {
-				src: '/covers/baa-baa-black-sheep-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/baa-baa-black-sheep-hires.jpg`,
 				alt: 'Baa Baa Black Sheep'
 			}
 		},
@@ -40,7 +41,7 @@ export const load = async () => {
 			orderID: '1234567892',
 			status: 'cancelled',
 			cover: {
-				src: '/covers/camel-rider-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/camel-rider-hires.jpg`,
 				alt: 'Camel Rider'
 			}
 		},
@@ -51,7 +52,7 @@ export const load = async () => {
 			orderID: '1234567893',
 			status: 'processing',
 			cover: {
-				src: '/covers/dancing-with-the-dinosaurs-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/dancing-with-the-dinosaurs-hires.jpg`,
 				alt: 'Dancing with the Dinosaurs'
 			}
 		},
@@ -62,7 +63,7 @@ export const load = async () => {
 			orderID: '1234567894',
 			status: 'processing',
 			cover: {
-				src: '/covers/earth-hour-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/earth-hour-hires.jpg`,
 				alt: 'Earth Hour'
 			}
 		},
@@ -73,7 +74,7 @@ export const load = async () => {
 			orderID: '1234567895',
 			status: 'delivered',
 			cover: {
-				src: '/covers/faces-of-the-moon-hires.jpg',
+				src: `${PUBLIC_API_URI}/public/covers/faces-of-the-moon-hires.jpg`,
 				alt: 'Faces of the Moon'
 			}
 		}

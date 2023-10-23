@@ -62,4 +62,4 @@ const formatter = ({ value, locale = 'en-US', options }: TFormatterProps) =>
  * @returns The formatted currency value.
  */
 export const currencyFormat = ({ value, preset, options }: TCurrencyFormatterProps) =>
-	formatter({ value, ...(preset && currencyTemplates[preset]), ...(options && { options }) });
+	formatter({ value, ...(preset ? currencyTemplates[preset] : options) });

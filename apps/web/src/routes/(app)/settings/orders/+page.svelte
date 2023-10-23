@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
-	import { HeaderActionsLayout } from '$lib/layouts';
+	import { HeaderActionsLayout, OrderCardLayout } from '$lib/layouts';
 	import { Button, Icon, Tabs } from '@novelty/ui/components';
 	import { groupBy } from '@novelty/utils';
 
@@ -53,21 +53,18 @@
 	{#each statuses as { value }}
 		<Tabs.Content {value}>
 			<ul>
-				{#each currentList as { title, price }}
+				{#each currentList as order}
 					<li>
-						<article class="order">
-							<div>
-								<h3 class="order-title">{title}</h3>
-								<p class="order-price">{price}</p>
-							</div>
-
-							<Button size="icon" variant="outline">
-								<Icon class="text-xl" icon="mingcute:right-fill" />
-							</Button>
-						</article>
+						<OrderCardLayout {order} />
 					</li>
 				{/each}
 			</ul>
 		</Tabs.Content>
 	{/each}
 </Tabs.Root>
+
+<style lang="postcss">
+	ul {
+		@apply m-0 mt-8 list-none p-0;
+	}
+</style>
