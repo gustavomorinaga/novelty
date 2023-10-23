@@ -33,7 +33,7 @@ export const serverConfig = {
 			// rateLimit(),
 			staticPlugin(),
 			swagger(apiDoc),
-			logger()
+			logger({ level: 'error' })
 		],
 		modules: [...Object.values(controllers)]
 	} satisfies TAppConfig<'/api'>

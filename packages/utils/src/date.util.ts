@@ -22,6 +22,7 @@ export const dateTemplates = {
 
 type TDateFormatterProps = {
 	value: TFormatterProps['value'];
+	options?: TFormatterProps['options'];
 	preset?: keyof typeof dateTemplates;
 };
 
@@ -41,5 +42,5 @@ const formatter = ({ value, locale = 'en-US', options }: TFormatterProps) =>
  * @param preset - The preset template to use for formatting (optional).
  * @returns The formatted date string.
  */
-export const dateFormat = ({ value, preset }: TDateFormatterProps) =>
-	formatter({ value, ...(preset && dateTemplates[preset]) });
+export const dateFormat = ({ value, preset, options }: TDateFormatterProps) =>
+	formatter({ value, ...(preset && dateTemplates[preset]), ...(options && { options }) });

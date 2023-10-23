@@ -42,6 +42,7 @@ export const currencyTemplates = {
 
 type TCurrencyFormatterProps = {
 	value: TFormatterProps['value'];
+	options?: TFormatterProps['options'];
 	preset?: keyof typeof currencyTemplates;
 };
 
@@ -57,8 +58,8 @@ const formatter = ({ value, locale = 'en-US', options }: TFormatterProps) =>
 
 /**
  * Formats a currency value according to a preset or custom template.
- * @param {TCurrencyFormatterProps} props - The value and preset or custom template to use for formatting.
- * @returns {string} The formatted currency value.
+ * @param props - The value and preset or custom template to use for formatting.
+ * @returns The formatted currency value.
  */
-export const currencyFormat = ({ value, preset }: TCurrencyFormatterProps) =>
-	formatter({ value, ...(preset && currencyTemplates[preset]) });
+export const currencyFormat = ({ value, preset, options }: TCurrencyFormatterProps) =>
+	formatter({ value, ...(preset && currencyTemplates[preset]), ...(options && { options }) });
