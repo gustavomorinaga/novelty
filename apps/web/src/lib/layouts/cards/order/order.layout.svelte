@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Card } from '@novelty/ui/components';
+	import { Badge, Card } from '@novelty/ui/components';
+	import { currencyFormat } from '@novelty/utils';
 	import type { HTMLImgAttributes } from 'svelte/elements';
 
 	type TOrder = {
@@ -19,15 +20,16 @@
 		<img src={order.cover.src} alt={order.cover.alt} />
 	</figure>
 
-	<Card.Content class="col-span-3 p-4">
+	<Card.Content class="col-span-3 px-4 py-0">
 		<Card.Header class="p-0">
 			<Card.Title>{order.title}</Card.Title>
 			<Card.Description>Order ID: {order.orderID}</Card.Description>
 		</Card.Header>
 
-		<Card.Footer class="p-0">
-			<span>{order.price}</span>
-			<span>{order.status}</span>
+		<Card.Footer class="justify-between p-0 pt-4">
+			<span>{currencyFormat({ value: order.price, preset: 'USD' })}</span>
+
+			<Badge>{order.status.toUpperCase()}</Badge>
 		</Card.Footer>
 	</Card.Content>
 </Card.Root>

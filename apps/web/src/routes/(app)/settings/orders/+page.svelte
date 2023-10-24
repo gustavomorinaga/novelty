@@ -42,7 +42,7 @@
 </HeaderActionsLayout>
 
 <Tabs.Root value={currentStatus.value}>
-	<Tabs.List class="w-full">
+	<Tabs.List class="fixed inset-x-4 top-[4.5rem]">
 		{#each statuses as { label, value }}
 			<Tabs.Trigger class="flex-auto" {value} on:click={() => handleTabChange(value)}>
 				{label}
@@ -52,7 +52,7 @@
 
 	{#each statuses as { value }}
 		<Tabs.Content {value}>
-			<ul>
+			<ul class="m-0 mt-16 list-none p-0">
 				{#each currentList as order}
 					<li>
 						<OrderCardLayout {order} />
@@ -62,9 +62,3 @@
 		</Tabs.Content>
 	{/each}
 </Tabs.Root>
-
-<style lang="postcss">
-	ul {
-		@apply m-0 mt-8 list-none p-0;
-	}
-</style>
